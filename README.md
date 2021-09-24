@@ -3,7 +3,7 @@ Bu repository Dart ve Flutter öğrenirken yaptığım örnekleri ve uygulamalar
 
 #### Effective Dart Style
 
-#### DO name types using UpperCamelCase.
+- DO name types using UpperCamelCase.
 ```
 class NickNames { ... }
 
@@ -20,7 +20,7 @@ class A { ... }
 ```
 
 
-## DO name extensions using UpperCamelCase.
+- DO name extensions using UpperCamelCase.
 
 ```
 extension MyFancyList<T> on List<T> { ... }
@@ -28,7 +28,7 @@ extension MyFancyList<T> on List<T> { ... }
 extension SmartIterable<T> on Iterable<T> { ... }
 ```
 
-## DO name libraries, packages, directories, and source files using lowercase_with_underscores.
+- DO name libraries, packages, directories, and source files using lowercase_with_underscores.
 
 ```
 
@@ -38,7 +38,7 @@ import 'file_system.dart';
 import 'slider_menu.dart';
 ```
 
-#### DO name other identifiers using lowerCamelCase.
+- DO name other identifiers using lowerCamelCase.
 
 ```
  
