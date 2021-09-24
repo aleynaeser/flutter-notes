@@ -85,7 +85,16 @@ if (overflowChars != other.overflowChars) {
 }
 ```
 
-- DO use curly braces for all flow control statements.
+- Here is how the various libraries should import each other:
+
+import 'src/stuff.dart';
+import 'src/utils.dart';
+
+import '../api.dart';
+import 'stuff.dart';
+
+import 'package:my_package/api.dart'; // Don't reach into 'lib'.
+import 'test_utils.dart'; // Relative within 'test' is fine.
 
 
 
