@@ -1,7 +1,7 @@
 # flutter-notes
 Bu repository Dart ve Flutter öğrenirken yaptığım örnekleri ve uygulamaları içermektedir.
 
-## Dart All Cheatsheet
+##  All Dart Cheatsheet
 
 #### ? = null
 ```
