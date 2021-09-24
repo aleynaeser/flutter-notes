@@ -1,7 +1,7 @@
 # flutter-notes
 Bu repository Dart ve Flutter öğrenirken yaptığım örnekleri ve uygulamaları içermektedir.
 
-## Nullable Variables
+## Dart All Cheatsheet
 
 #### ? = null
 ```
