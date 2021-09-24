@@ -16,7 +16,7 @@ int? a = null; // Valid in null-safe Dart.
 int? a; // The initial value of a is null.
 ```
 
-#### ?? yalnızca o anda boşsa değer atamak için kullanılır
+#### ?? yalnızca o anda boşsa değer atamak için kullanılır.
 
 ```
 int? a; // = null
@@ -27,7 +27,7 @@ a ??= 5;
 print(a); // <-- Still prints 3.
 ```
 
-#### ?? eğer solunda null bir ifade yoksa solundkai değeri varsa sağındkai değeri döndürür.
+#### ?? eğer solunda null bir ifade yoksa solundaki değeri varsa sağındaki değeri döndürür.
 
 ```
 print(1 ?? 3); // <-- Prints 1.
@@ -44,12 +44,26 @@ myObject?.someProperty?.someMethod() // 2 nesne de null değilse someMeyhod dön
 
 ```
 
-####
+#### List kullanımı
+
+```
+final aListOfStrings = ['a', 'b', 'c'];
+final aSetOfInts = {3, 4, 5};
+final aMapOfStringsToInts = {
+  'one': 1,
+  'two': 2,
+  'three': 3,
+}
+
+final aListOfInts = <int>[];
+final aSetOfInts = <int>{};
+final aMapOfIntToDouble = <int, double>{};
 
 
+// Assign this a map of String to int so that aMapOfStringsToInts['myKey'] returns 12:
+final aMapOfStringsToInts = {'myKey': 12};
 
-
-
+```
 
 
 
