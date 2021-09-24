@@ -1,6 +1,36 @@
 # flutter-notes
 Bu repository Dart ve Flutter öğrenirken yaptığım örnekleri ve uygulamaları içermektedir.
 
+## Effective Dart Style
+
+#### DO name types using UpperCamelCase.
+```
+class NickNames { ... }
+
+class HttpRequest { ... }
+
+typedef Predicate<T> = bool Function(T value);
+
+class Foo {
+  const Foo([Object? arg]);
+}
+
+Foo(anArg)
+class A { ... }
+
+const foo = Foo(); // variables lowerCamelCase
+```
+
+## DO name extensions using UpperCamelCase.
+
+
+
+
+
+
+
+
+
 ##  All Dart Cheatsheet
 
 #### ? = null
