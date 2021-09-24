@@ -1,7 +1,7 @@
 # flutter-notes
 Bu repository Dart ve Flutter öğrenirken yaptığım örnekleri ve uygulamaları içermektedir.
 
-## Effective Dart Style
+#### Effective Dart Style
 
 #### DO name types using UpperCamelCase.
 ```
@@ -17,17 +17,75 @@ class Foo {
 
 Foo(anArg)
 class A { ... }
-
-const foo = Foo(); // variables lowerCamelCase
 ```
+
 
 ## DO name extensions using UpperCamelCase.
 
+```
+extension MyFancyList<T> on List<T> { ... }
 
+extension SmartIterable<T> on Iterable<T> { ... }
+```
 
+## DO name libraries, packages, directories, and source files using lowercase_with_underscores.
 
+```
 
+library peg_parser.source_scanner;
 
+import 'file_system.dart';
+import 'slider_menu.dart';
+```
+
+#### DO name other identifiers using lowerCamelCase.
+
+```
+ 
+const foo = Foo(); 
+
+var count = 3;
+
+HttpRequest httpRequest;
+
+void align(bool clearItems) {
+  // ...
+}
+
+const pi = 3.14;
+const defaultTimeout = 1000;
+final urlScheme = RegExp('^([a-z]+):');
+
+class Dice {
+  static final numberGenerator = Random();
+}
+
+```
+
+#### DO specify exports in a separate section after all imports.
+```
+import 'src/error.dart';
+import 'src/foo_bar.dart';
+
+export 'src/error.dart';
+```
+
+#### DO use curly braces for all flow control statements.
+
+```
+// When you have an if statement with no else clause and the whole if statement fits on one line, you can omit the braces if you prefer:
+if (arg == null) return defaultValue;
+
+/****BUT****/
+
+// If the body wraps to the next line, though, use braces!!
+
+if (overflowChars != other.overflowChars) {
+  return overflowChars < other.overflowChars;
+}
+```
+
+#### DO use curly braces for all flow control statements.
 
 
 
