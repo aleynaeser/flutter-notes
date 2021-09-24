@@ -3,7 +3,7 @@ Bu repository Dart ve Flutter öğrenirken yaptığım örnekleri ve uygulamalar
 
 # Nullable Variables
 
-## ? = null
+### ? = null
 ```
 int a = null; // INVALID in null-safe Dart.
 ```
@@ -16,7 +16,7 @@ int? a = null; // Valid in null-safe Dart.
 int? a; // The initial value of a is null.
 ```
 
-## ?? yalnızca o anda boşsa değer atamak için kullanılır
+### ?? yalnızca o anda boşsa değer atamak için kullanılır
 
 ```
 int? a; // = null
@@ -27,14 +27,14 @@ a ??= 5;
 print(a); // <-- Still prints 3.
 ```
 
-## ?? eğer solunda null bir ifade yoksa solundkai değeri varsa sağındkai değeri döndürür.
+### ?? eğer solunda null bir ifade yoksa solundkai değeri varsa sağındkai değeri döndürür.
 
 ```
 print(1 ?? 3); // <-- Prints 1.
 print(null ?? 12); // <-- Prints 12.
 ```
 
-## null değer döndürürse:
+### null değer döndürürse:
 ```
 (myObject != null) ? myObject.someProperty : null
 
