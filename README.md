@@ -54,12 +54,13 @@ final aMapOfStringsToInts = {
   'two': 2,
   'three': 3,
 }
-
+```
+```
 final aListOfInts = <int>[];
 final aSetOfInts = <int>{};
 final aMapOfIntToDouble = <int, double>{};
-
-
+```
+```
 // Assign this a map of String to int so that aMapOfStringsToInts['myKey'] returns 12:
 final aMapOfStringsToInts = {'myKey': 12};
 
