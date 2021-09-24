@@ -1,7 +1,7 @@
 # flutter-notes
 Bu repository Dart ve Flutter öğrenirken yaptığım örnekleri ve uygulamaları içermektedir.
 
-#### Effective Dart Style
+## Effective Dart Style
 
 - DO name types using UpperCamelCase.
 ```
@@ -62,7 +62,7 @@ class Dice {
 
 ```
 
-#### DO specify exports in a separate section after all imports.
+- DO specify exports in a separate section after all imports.
 ```
 import 'src/error.dart';
 import 'src/foo_bar.dart';
@@ -70,7 +70,7 @@ import 'src/foo_bar.dart';
 export 'src/error.dart';
 ```
 
-#### DO use curly braces for all flow control statements.
+- DO use curly braces for all flow control statements.
 
 ```
 // When you have an if statement with no else clause and the whole if statement fits on one line, you can omit the braces if you prefer:
@@ -85,13 +85,13 @@ if (overflowChars != other.overflowChars) {
 }
 ```
 
-#### DO use curly braces for all flow control statements.
+- DO use curly braces for all flow control statements.
 
 
 
 ##  All Dart Cheatsheet
 
-#### ? = null
+- ? = null
 ```
 int a = null; // INVALID in null-safe Dart.
 ```
@@ -104,7 +104,7 @@ int? a = null; // Valid in null-safe Dart.
 int? a; // The initial value of a is null.
 ```
 
-#### ?? yalnızca o anda boşsa değer atamak için kullanılır.
+- ?? yalnızca o anda boşsa değer atamak için kullanılır.
 
 ```
 int? a; // = null
@@ -115,14 +115,14 @@ a ??= 5;
 print(a); // <-- Still prints 3.
 ```
 
-#### ?? eğer solunda null bir ifade yoksa solundaki değeri varsa sağındaki değeri döndürür.
+- ?? eğer solunda null bir ifade yoksa solundaki değeri varsa sağındaki değeri döndürür.
 
 ```
 print(1 ?? 3); // <-- Prints 1.
 print(null ?? 12); // <-- Prints 12.
 ```
 
-#### null değer döndürürse:
+- null değer döndürürse:
 ```
 (myObject != null) ? myObject.someProperty : null
 
@@ -132,7 +132,7 @@ myObject?.someProperty?.someMethod() // 2 nesne de null değilse someMeyhod dön
 
 ```
 
-#### List kullanımı
+- List kullanımı
 
 ```
 final aListOfStrings = ['a', 'b', 'c'];
