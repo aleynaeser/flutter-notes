@@ -77,7 +77,9 @@ class AnaEkran extends State<HomeScreen> {
                         ElevatedButton(
                           onPressed: () {
                             setState(() {
-                                  favoriteDataList.add(mainDataList[index]);
+                                     if(!favoriteDataList.contains(mainDataList[index])) { 
+                                favoriteDataList.add(mainDataList[index]);
+                              }
                             });
                           },
                           style: ButtonStyle(
