@@ -86,7 +86,7 @@ if (overflowChars != other.overflowChars) {
 ```
 
 - Here is how the various libraries should import each other:
-
+```
 import 'src/stuff.dart';
 import 'src/utils.dart';
 
@@ -96,7 +96,7 @@ import 'stuff.dart';
 import 'package:my_package/api.dart'; // Don't reach into 'lib'.
 import 'test_utils.dart'; // Relative within 'test' is fine.
 
-
+```
 
 ##  All Dart Cheatsheet
 
