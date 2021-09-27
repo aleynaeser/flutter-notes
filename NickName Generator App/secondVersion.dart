@@ -45,7 +45,7 @@ class AnaEkran extends State<HomeScreen> {
       length: 1,
       child: Scaffold(
           appBar: AppBar(
-            title: Text('Best Cool NickNames'),
+            title: Text('Nickname Generator'),
             backgroundColor: Colors.deepPurple,
             bottom: TabBar(
               tabs: [
