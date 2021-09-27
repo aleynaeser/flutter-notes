@@ -1,5 +1,5 @@
 # flutter-notes
-Bu repository Dart ve Flutter öğrenirken yaptığım örnekleri ve uygulamaları içermektedir.
+This repository contains examples and applications I made while learning Dart and Flutter.
 
 ## Effective Dart Style
 
@@ -113,7 +113,7 @@ int? a = null; // Valid in null-safe Dart.
 int? a; // The initial value of a is null.
 ```
 
-- ?? yalnızca o anda boşsa değer atamak için kullanılır.
+- ?? it is used to assign a value only if it is currently empty.
 
 ```
 int? a; // = null
@@ -124,14 +124,14 @@ a ??= 5;
 print(a); // <-- Still prints 3.
 ```
 
-- ?? eğer solunda null bir ifade yoksa solundaki değeri varsa sağındaki değeri döndürür.
+- ?? returns the value to the right if there is no null expression to the left of it.
 
 ```
 print(1 ?? 3); // <-- Prints 1.
 print(null ?? 12); // <-- Prints 12.
 ```
 
-- null değer döndürürse:
+- If it returns null:
 ```
 (myObject != null) ? myObject.someProperty : null
 
@@ -141,7 +141,7 @@ myObject?.someProperty?.someMethod() // 2 nesne de null değilse someMeyhod dön
 
 ```
 
-- List kullanımı
+- List Usage
 
 ```
 final aListOfStrings = ['a', 'b', 'c'];
