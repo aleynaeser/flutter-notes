@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'NickName Generator',
+      title: 'Nickname Generator',
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
