@@ -72,7 +72,7 @@ class _RandomWordsState extends State<RandomWords> {
 
 
   Widget build(BuildContext context) {
-    return Scaffold (                     // Add from here...
+    return Scaffold (                     
       appBar: AppBar(
         title: const Text('NickName Generator'),
         actions: [
@@ -113,7 +113,7 @@ class _RandomWordsState extends State<RandomWords> {
             ),
             body: ListView(children: divided),
           );
-        }, //...to here.
+        },  
       ),
     );
   }
