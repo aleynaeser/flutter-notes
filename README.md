@@ -141,6 +141,10 @@ myObject?.someProperty?.someMethod() // 2 nesne de null değilse someMeyhod dön
 
 ```
 
+- Basic Widget Architecture
+
+ ![image](https://user-images.githubusercontent.com/45822686/138070253-4ac1432c-8242-4d97-9aed-ea1ab715e7f3.png)
+
 - List Usage
 
 ```
@@ -161,15 +165,23 @@ final aMapOfIntToDouble = <int, double>{};
 // Assign this a map of String to int so that aMapOfStringsToInts['myKey'] returns 12:
 final aMapOfStringsToInts = {'myKey': 12};
 
+//Writing the list on the screen
+for(var product in profucts){
+    print(product);
+}
 ```
 
+- Map Usage
 
+```
+var dictionary1 = new Map();
+dictionary1["book"] = "kitap";
 
-
-
-
-
-
+var dictionary1 ={"kitap":"book"};
+//kitap=key
+//delete
+dictionary1.remove("book");
+```
 
 
 
