@@ -169,6 +169,10 @@ final aMapOfStringsToInts = {'myKey': 12};
 for(var product in profucts){
     print(product);
 }
+
+//
+Student selectedStudent = Student.withId(0,"","",0);
+
 ```
 
 - Map Usage
