@@ -103,6 +103,17 @@ class AnaEkran extends State<HomeScreen> {
           appBar: AppBar(
             title: Text('Nickname Generator'),
             backgroundColor: Colors.deepPurple,
+            actions: [
+            IconButton(
+              icon: const Icon(Icons.add),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => NicknameAdd()));
+                    mainDataList.addAll(NicknameAddState.addedDataList);
+              },
+              tooltip: 'Add New Nickname',
+            ),
+          ],
             bottom: TabBar(
               tabs: [
                 Tab(icon: Icon(Icons.article_rounded)),
