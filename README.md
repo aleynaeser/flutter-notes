@@ -196,7 +196,14 @@ dictionary1.remove("book");
 - Usesful Widgets
 #### Flexible, Expanded, Column, Row,Form, Container, 
 
+- Using Functions
 
+
+``` Function f1 =(int a, int b){
+int toplam =a + b;
+print(toplam); 
+
+}```
 
 
 
