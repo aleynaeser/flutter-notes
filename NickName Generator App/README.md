@@ -1,5 +1,5 @@
 ## Name Generator Apps
-#### These apps are my first applications with Flutter. I publish on my google play store. You can visit --->
+#### These apps are my first applications with Flutter. I published on my google play store. You can visit and download --->
 
 
 ## Last Version
