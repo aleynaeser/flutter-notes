@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() => runApp(const MyApp());
 
@@ -15,11 +16,11 @@ class MyApp extends StatelessWidget {
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
   @override
-  AnaEkran createState() => AnaEkran();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class AnaEkran extends State<HomeScreen> {
-  static List<String> mainDataList = [
+class _HomeScreenState extends State<HomeScreen> {
+  final List<String> mainDataList = [
     "Alien",
     "Poseidon",
     "Charmander",
@@ -95,18 +96,50 @@ class AnaEkran extends State<HomeScreen> {
 
   List<String> favoriteDataList = [];
 
+  _saveList(list) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setStringList("key", list);
+    return true;
+  }
+
+  _getSavedList() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getStringList("key") != null) {
+      favoriteDataList = prefs.getStringList("key")!;
+    }
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getSavedList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('StarNames - Startup Nickname Generator'),
+          title: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                  "StarName",
+                  style: TextStyle(color: Colors.white, fontSize: 24.0),
+                ),
+                Text(
+                  "Startup Name Generator",
+                  style: TextStyle(color: Colors.white, fontSize: 12.0),
+                ),
+              ]),
           backgroundColor: Colors.deepPurple,
           bottom: const TabBar(
             tabs: [
               Tab(icon: Icon(Icons.article_rounded)),
-              Tab(icon: Icon(Icons.favorite)),
+              Tab(icon: Icon(Icons.star)),
             ],
           ),
         ),
@@ -120,7 +153,7 @@ class AnaEkran extends State<HomeScreen> {
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.all(20.0),
+                          padding: const EdgeInsets.all(19.0),
                           child: SelectableText(
                             mainDataList[index],
                             cursorColor: Colors.purple,
@@ -130,7 +163,7 @@ class AnaEkran extends State<HomeScreen> {
                                 selectAll: true,
                                 cut: false,
                                 paste: false),
-                            style: const TextStyle(fontSize: 19.0),
+                            style: const TextStyle(fontSize: 17.0),
                           ),
                         ),
                       ),
@@ -141,6 +174,7 @@ class AnaEkran extends State<HomeScreen> {
                                 .contains(mainDataList[index])) {
                               favoriteDataList.add(mainDataList[index]);
                             }
+                            _saveList(favoriteDataList);
                           });
                         },
                         style: ButtonStyle(
@@ -149,7 +183,7 @@ class AnaEkran extends State<HomeScreen> {
                           ),
                         ),
                         child: const Icon(
-                          Icons.favorite,
+                          Icons.star,
                           color: Colors.white,
                         ),
                       ),
@@ -161,8 +195,8 @@ class AnaEkran extends State<HomeScreen> {
             favoriteDataList.isEmpty
                 ? const Center(
                     child: Text(
-                      'There are no favorites yet!',
-                      style: TextStyle(color: Colors.black),
+                      "You don't have a star name yet!",
+                      style: TextStyle(color: Colors.black, fontSize: 15.0),
                     ),
                   )
                 : ListView.builder(
@@ -173,7 +207,7 @@ class AnaEkran extends State<HomeScreen> {
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsets.all(20.0),
+                                padding: const EdgeInsets.all(19.0),
                                 child: SelectableText(
                                   favoriteDataList[index],
                                   cursorColor: Colors.purple,
@@ -183,7 +217,7 @@ class AnaEkran extends State<HomeScreen> {
                                       selectAll: true,
                                       cut: false,
                                       paste: false),
-                                  style: const TextStyle(fontSize: 19.0),
+                                  style: const TextStyle(fontSize: 17.0),
                                 ),
                               ),
                             ),
@@ -192,6 +226,7 @@ class AnaEkran extends State<HomeScreen> {
                                 setState(() {
                                   favoriteDataList
                                       .remove(favoriteDataList[index]);
+                                  _saveList(favoriteDataList);
                                 });
                               },
                               style: ButtonStyle(
