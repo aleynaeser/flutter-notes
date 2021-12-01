@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: HomeScreen(),
     );
   }
 }
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
+  AnaEkran createState() => AnaEkran();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  final List<String> mainDataList = [
+class AnaEkran extends State<HomeScreen> {
+  List<String> mainDataList = [
     "Alien",
     "Poseidon",
     "Charmander",
@@ -95,25 +92,68 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   List<String> favoriteDataList = [];
+  String added=" ";
 
-  _saveList(list) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setStringList("key", list);
-    return true;
+  var formKey = GlobalKey<FormState>();
+
+  Widget buildNicknameField() {
+    return TextFormField(
+      decoration:
+          InputDecoration(labelText: "Write Nickname", hintText: "NickName"),
+      validator: (value) {
+        if (value == null) {
+          added=value!;
+          return "Name Required!";
+        }
+        onSaved(value) {
+          mainDataList.add(value);
+        }
+      },
+    );
   }
 
-  _getSavedList() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (prefs.getStringList("key") != null) {
-      favoriteDataList = prefs.getStringList("key")!;
-    }
-    setState(() {});
+  Widget buildSubmitButton() {
+    return ElevatedButton(
+      onPressed: () {
+        if (formKey.currentState!.validate()) {
+          formKey.currentState!.save();
+          setState(() {
+            mainDataList.add(added);
+          });
+          Navigator.pop(context);
+      }
+  },
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all<Color>(
+          Colors.deepPurple,
+        ),
+      ),
+      child: const Icon(
+        Icons.add_box,
+        color: Colors.white,
+      ),
+    );
   }
 
-  @override
-  void initState() {
-    super.initState();
-    _getSavedList();
+  void _pushSaved() {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(builder: (context) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text("Add New Nickname"),
+          ),
+          body: Container(
+            margin: EdgeInsets.all(20.0),
+            child: Form(
+              key: formKey,
+              child: Column(
+                children: <Widget>[buildNicknameField(), buildSubmitButton()],
+              ),
+            ),
+          ),
+        );
+      }),
+    );
   }
 
   @override
@@ -122,24 +162,19 @@ class _HomeScreenState extends State<HomeScreen> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
-                  "StarName",
-                  style: TextStyle(color: Colors.white, fontSize: 24.0),
-                ),
-                Text(
-                  "Startup Name Generator",
-                  style: TextStyle(color: Colors.white, fontSize: 12.0),
-                ),
-              ]),
+          title: Text('Nickname Generator'),
           backgroundColor: Colors.deepPurple,
-          bottom: const TabBar(
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.add),
+              onPressed: _pushSaved,
+              tooltip: 'Add New Nickname',
+            ),
+          ],
+          bottom: TabBar(
             tabs: [
               Tab(icon: Icon(Icons.article_rounded)),
-              Tab(icon: Icon(Icons.star)),
+              Tab(icon: Icon(Icons.favorite)),
             ],
           ),
         ),
@@ -153,17 +188,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.all(19.0),
+                          padding: const EdgeInsets.all(20.0),
                           child: SelectableText(
                             mainDataList[index],
                             cursorColor: Colors.purple,
                             showCursor: false,
-                            toolbarOptions: const ToolbarOptions(
+                            toolbarOptions: ToolbarOptions(
                                 copy: true,
                                 selectAll: true,
                                 cut: false,
                                 paste: false),
-                            style: const TextStyle(fontSize: 17.0),
+                            style: const TextStyle(fontSize: 19.0),
                           ),
                         ),
                       ),
@@ -174,7 +209,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                 .contains(mainDataList[index])) {
                               favoriteDataList.add(mainDataList[index]);
                             }
-                            _saveList(favoriteDataList);
                           });
                         },
                         style: ButtonStyle(
@@ -183,7 +217,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         child: const Icon(
-                          Icons.star,
+                          Icons.favorite,
                           color: Colors.white,
                         ),
                       ),
@@ -195,8 +229,8 @@ class _HomeScreenState extends State<HomeScreen> {
             favoriteDataList.isEmpty
                 ? const Center(
                     child: Text(
-                      "You don't have a star name yet!",
-                      style: TextStyle(color: Colors.black, fontSize: 15.0),
+                      'There are no favorites yet!',
+                      style: TextStyle(color: Colors.black),
                     ),
                   )
                 : ListView.builder(
@@ -207,17 +241,17 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsets.all(19.0),
+                                padding: const EdgeInsets.all(20.0),
                                 child: SelectableText(
                                   favoriteDataList[index],
                                   cursorColor: Colors.purple,
                                   showCursor: false,
-                                  toolbarOptions: const ToolbarOptions(
+                                  toolbarOptions: ToolbarOptions(
                                       copy: true,
                                       selectAll: true,
                                       cut: false,
                                       paste: false),
-                                  style: const TextStyle(fontSize: 17.0),
+                                  style: const TextStyle(fontSize: 19.0),
                                 ),
                               ),
                             ),
@@ -226,7 +260,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                 setState(() {
                                   favoriteDataList
                                       .remove(favoriteDataList[index]);
-                                  _saveList(favoriteDataList);
                                 });
                               },
                               style: ButtonStyle(
