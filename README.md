@@ -1,6 +1,60 @@
 # flutter-notes
 This repository contains examples and applications I made while learning Dart and Flutter.
 
+
+## Build Flutter Appbundle
+
+- Use the following command in terminal for Windows
+
+ ```
+ keytool -genkey -v -keystore c:\Users\YOUR_USER_NAME\upload-keystore.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+ ```
+
+- Create a file named [project]/android/key.properties that contains a reference to your keystore:
+
+``` 
+storePassword=<password from previous step>
+keyPassword=<password from previous step>
+keyAlias=upload
+storeFile=<location of the key store file, such as /Users/<user name>/upload-keystore.jks>
+```
+
+- Add the keystore information before the android block for [project]/android/app/build.gradle 
+
+``` 
+   def keystoreProperties = new Properties()
+   def keystorePropertiesFile = rootProject.file('key.properties')
+   if (keystorePropertiesFile.exists()) {
+       keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+   }
+
+   android {
+         ...
+   }
+``` 
+- Find the buildTypes block and replace it with the following signing configuration info:
+``` 
+   signingConfigs {
+       release {
+           keyAlias keystoreProperties['keyAlias']
+           keyPassword keystoreProperties['keyPassword']
+           storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+           storePassword keystoreProperties['storePassword']
+       }
+   }
+   buildTypes {
+       release {
+           signingConfig signingConfigs.release
+       }
+   }
+``` 
+
+- Finally run the following command
+``` 
+flutter build appbundle
+``` 
+- Now, your appbundle is ready to upload any store 📲
+
 ## Effective Dart Style
 
 - DO name types using UpperCamelCase.
@@ -141,10 +195,6 @@ myObject?.someProperty?.someMethod() // 2 nesne de null değilse someMeyhod dön
 
 ```
 
-- Basic Widget Architecture
-
- ![image](https://user-images.githubusercontent.com/45822686/138070253-4ac1432c-8242-4d97-9aed-ea1ab715e7f3.png)
-
 - List Usage
 
 ```
@@ -175,6 +225,14 @@ Student selectedStudent = Student.withId(0,"","",0);
 
 ```
 
+- Using Functions
+```
+Function f1 =(int a, int b){
+int toplam =a + b;
+print(toplam); }
+
+```
+
 - Map Usage
 
 ```
@@ -193,21 +251,5 @@ dictionary1.remove("book");
 #### If there is a change, use the StatefulWidget
 #### Else StatelessWidget
 
-- Usesful Widgets
+- Useful Widgets
 #### Flexible, Expanded, Column, Row,Form, Container, 
-
-- Using Functions
-
-
-``` Function f1 =(int a, int b){
-int toplam =a + b;
-print(toplam); 
-
-}```
-
-
-
-
-
-
-
