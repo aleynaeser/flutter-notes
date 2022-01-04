@@ -1,5 +1,21 @@
 # flutter-notes
-This repository contains examples and applications I made while learning Dart and Flutter.
+This repository contains my notes while learning Dart and Flutter.
+
+## Contents
+<ol>
+  <li>
+    <a href="#Lnk">Build Flutter Appbundle</a>
+  </li>
+  <li>
+    <a href="#Lnk">State Management</a>
+  </li>
+      <li>
+        <a href="#Lnk">Effective Dart Style</a>
+      </li>
+      <li>
+        <a href="#Lnk">All Dart Cheatsheet</a>
+      </li>
+</ol>
 
 
 ## Build Flutter Appbundle
@@ -54,6 +70,31 @@ storeFile=<location of the key store file, such as /Users/<user name>/upload-key
 flutter build appbundle
 ``` 
 - Now, your appbundle is ready to upload any store 📲
+
+
+## State Management
+Flutter has several state management approaches that it recommends on its official website. Some of these are approaches like setState, Provider, Bloc, Mobx, Getx, GetIt.
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Effective Dart Style
 
