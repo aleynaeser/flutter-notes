@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// BuildContext için extension
 extension ThemeExtensions on BuildContext {
   CustomThemeModel get themeColors =>
       Theme.of(this).extension<CustomThemeModel>()!;
@@ -10,6 +9,7 @@ extension ThemeExtensions on BuildContext {
 class CustomThemeModel extends ThemeExtension<CustomThemeModel> {
   final Color themeColor1;
   final Color themeColor2;
+
   const CustomThemeModel({
     required this.themeColor1,
     required this.themeColor2,

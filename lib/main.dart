@@ -22,7 +22,7 @@ class ToDoApp extends StatelessWidget {
     return Consumer<ThemeProvider>(
       builder: (context, themeProvider, child) {
         return MaterialApp(
-          title: AppInfo.appName,
+          title: BaseInfo.appName,
           debugShowCheckedModeBanner: false,
           theme: ThemeConfig.getTheme(themeProvider.isDarkMode),
           home: const MainScreen(),

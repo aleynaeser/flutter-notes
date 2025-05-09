@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/common/models/theme_model.dart';
 import 'package:todo_app/common/providers/theme_provider.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -17,9 +18,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           title: Text(title),
           elevation: 0,
           centerTitle: false,
-          backgroundColor: Theme.of(
-            context,
-          ).colorScheme.surface.withOpacity(0.5),
+          backgroundColor: context.themeColors.themeColor2,
           actions: [
             IconButton(
               icon: Icon(
