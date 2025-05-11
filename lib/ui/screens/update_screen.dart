@@ -1,9 +1,11 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:todo_app/core/data/entity/todo.dart';
+import 'package:todo_app/ui/components/app_bar.dart';
+import 'package:todo_app/common/constants/size_constants.dart';
 
 class UpdateScreen extends StatefulWidget {
-  const UpdateScreen({super.key});
+  final ToDo todo;
+  const UpdateScreen({super.key, required this.todo});
 
   @override
   State<UpdateScreen> createState() => _UpdateScreenState();
@@ -12,44 +14,45 @@ class UpdateScreen extends StatefulWidget {
 class _UpdateScreenState extends State<UpdateScreen> {
   @override
   Widget build(BuildContext context) {
+    var screenInfo = MediaQuery.of(context);
+    final double screenWidth = screenInfo.size.width;
+    final double screenHeight = screenInfo.size.height;
+    var currentImage = widget.todo.image;
+
+    final TextEditingController textController = TextEditingController(text: widget.todo.name);
+
+    void saveTask(String task) {
+      print(task + ' ' + currentImage);
+    }
+
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(60),
-        child: ClipRRect(
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-            child: AppBar(
-              title: Text('Main Screen'),
-              elevation: 0,
-              centerTitle: false,
-              backgroundColor: const Color.fromARGB(255, 30, 30, 30),
-            ),
-          ),
-        ),
-      ),
-      body: SafeArea(
+      appBar: CustomAppBar(title: 'Update Screen'),
+      body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(Sizes.padding),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(
-                      text: 'Hello ',
-                      style: TextStyle(fontWeight: FontWeight.w900),
-                    ),
-                    TextSpan(
-                      text: 'World 👩‍💻',
-                      style: TextStyle(fontWeight: FontWeight.w100),
-                    ),
-                  ],
+              Image.asset('images/$currentImage'),
+              const SizedBox(height: Sizes.sizedBox),
+              Padding(
+                padding: const EdgeInsets.all(Sizes.padding),
+                child: TextField(
+                  controller: textController,
+                  decoration: InputDecoration(
+                    hintText: 'Enter your task',
+                    border: OutlineInputBorder(),
+                  ),
                 ),
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: Color.fromARGB(255, 227, 227, 227),
+              ),
+              const SizedBox(height: Sizes.sizedBox),
+              SizedBox(
+                width: screenWidth * 0.3,
+                height: screenHeight * 0.06,
+                child: ElevatedButton(
+                  onPressed: () => saveTask(textController.text),
+                  child: Text('Update'),
                 ),
               ),
             ],
