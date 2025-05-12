@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/core/data/entity/todo.dart';
+import 'package:todo_app/core/data/entity/todos.dart';
 import 'package:todo_app/ui/components/app_bar.dart';
 import 'package:todo_app/common/constants/size_constants.dart';
 
 class UpdateScreen extends StatefulWidget {
-  final ToDo todo;
-  const UpdateScreen({super.key, required this.todo});
+  final ToDos todos;
+  const UpdateScreen({super.key, required this.todos});
 
   @override
   State<UpdateScreen> createState() => _UpdateScreenState();
@@ -17,9 +17,9 @@ class _UpdateScreenState extends State<UpdateScreen> {
     var screenInfo = MediaQuery.of(context);
     final double screenWidth = screenInfo.size.width;
     final double screenHeight = screenInfo.size.height;
-    var currentImage = widget.todo.image;
+    var currentImage = widget.todos.image;
 
-    final TextEditingController textController = TextEditingController(text: widget.todo.name);
+    final TextEditingController textController = TextEditingController(text: widget.todos.name);
 
     void saveTask(String task) {
       print(task + ' ' + currentImage);
