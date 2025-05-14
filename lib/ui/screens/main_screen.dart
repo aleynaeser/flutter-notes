@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/core/data/entity/todos.dart';
 import 'package:todo_app/ui/components/app_bar.dart';
 import 'package:todo_app/ui/screens/save_screen.dart';
 import 'package:todo_app/ui/screens/update_screen.dart';
 import 'package:todo_app/common/models/theme_model.dart';
 import 'package:todo_app/common/constants/size_constants.dart';
+
+import '../cubits/main_cubit.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -15,15 +18,10 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  Future<List<ToDos>> loadToDos() async {
-    var toDosList = <ToDos>[];
-    var toDo1 = ToDos(id: 1, name: 'ToDo 1', image: 'simsek.png');
-    var toDo2 = ToDos(id: 2, name: 'ToDo 2', image: 'simsek.png');
-    var toDo3 = ToDos(id: 3, name: 'ToDo 3', image: 'simsek.png');
-    toDosList.add(toDo1);
-    toDosList.add(toDo2);
-    toDosList.add(toDo3);
-    return toDosList;
+  @override
+  void initState() {
+    super.initState();
+    context.read<MainCubit>().loadToDos();
   }
 
   @override
@@ -67,19 +65,16 @@ class _MainScreenState extends State<MainScreen> {
                 child: CupertinoSearchTextField(
                   placeholder: 'Search',
                   onChanged: (value) {
-                    print(value);
+                    context.read<MainCubit>().searchToDos(value);
                   },
                 ),
               ),
-              FutureBuilder<List<ToDos>>(
-                future: loadToDos(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    var toDosList = snapshot.data;
-
+              BlocBuilder<MainCubit, List<ToDos>>(
+                builder: (context, toDosList) {
+                  if (toDosList.isNotEmpty) {
                     return Expanded(
                       child: ListView.builder(
-                        itemCount: toDosList!.length,
+                        itemCount: toDosList.length,
                         itemBuilder: (context, index) {
                           var toDo = toDosList[index];
 
@@ -123,9 +118,11 @@ class _MainScreenState extends State<MainScreen> {
                                             backgroundColor:
                                                 context.themeColors.themeColor4,
                                             action: SnackBarAction(
-                                              label: 'Geri Al',
+                                              label: 'Yes',
                                               onPressed: () {
-                                                // TODO: Implement undo functionality
+                                                context
+                                                    .read<MainCubit>()
+                                                    .deleteTask(toDo.id);
                                               },
                                             ),
                                           ),

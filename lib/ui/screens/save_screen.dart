@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/ui/components/app_bar.dart';
 import 'package:todo_app/common/constants/size_constants.dart';
 import 'dart:math';
+
+import '../cubits/main_cubit.dart';
+import '../cubits/save_cubit.dart';
 
 class SaveScreen extends StatefulWidget {
   const SaveScreen({super.key});
@@ -49,10 +53,6 @@ class _SaveScreenState extends State<SaveScreen> {
     final double screenHeight = screenInfo.size.height;
     final TextEditingController textController = TextEditingController();
 
-    void saveTask(String task) {
-      print(task + ' ' + currentImage);
-    }
-
     return Scaffold(
       appBar: CustomAppBar(title: 'Save Screen'),
       body: Center(
@@ -82,7 +82,17 @@ class _SaveScreenState extends State<SaveScreen> {
                 width: screenWidth * 0.3,
                 height: screenHeight * 0.06,
                 child: ElevatedButton(
-                  onPressed: () => saveTask(textController.text),
+                  onPressed: () {
+                    final mainCubit = context.read<MainCubit>();
+
+                    context.read<SaveCubit>().saveTask(
+                      textController.text,
+                      currentImage,
+                      mainCubit,
+                    );
+
+                    Navigator.pop(context);
+                  },
                   child: Text('Save'),
                 ),
               ),

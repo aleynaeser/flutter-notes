@@ -1,5 +1,5 @@
 class ToDos {
-  int id;
+  String id;
   String name;
   String image;
 

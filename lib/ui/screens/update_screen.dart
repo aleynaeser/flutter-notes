@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_app/core/data/entity/todos.dart';
 import 'package:todo_app/ui/components/app_bar.dart';
 import 'package:todo_app/common/constants/size_constants.dart';
+
+import '../cubits/update_cubit.dart';
 
 class UpdateScreen extends StatefulWidget {
   final ToDos todos;
@@ -19,11 +22,9 @@ class _UpdateScreenState extends State<UpdateScreen> {
     final double screenHeight = screenInfo.size.height;
     var currentImage = widget.todos.image;
 
-    final TextEditingController textController = TextEditingController(text: widget.todos.name);
-
-    void saveTask(String task) {
-      print(task + ' ' + currentImage);
-    }
+    final TextEditingController textController = TextEditingController(
+      text: widget.todos.name,
+    );
 
     return Scaffold(
       appBar: CustomAppBar(title: 'Update Screen'),
@@ -51,7 +52,12 @@ class _UpdateScreenState extends State<UpdateScreen> {
                 width: screenWidth * 0.3,
                 height: screenHeight * 0.06,
                 child: ElevatedButton(
-                  onPressed: () => saveTask(textController.text),
+                  onPressed: () {
+                    context.read<UpdateCubit>().updateTask(
+                      widget.todos.id,
+                      widget.todos.name,
+                    );
+                  },
                   child: Text('Update'),
                 ),
               ),
