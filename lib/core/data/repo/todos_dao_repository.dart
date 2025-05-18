@@ -1,11 +1,16 @@
 import '../database/database_helper.dart';
 import '../entity/todos.dart';
+import 'package:uuid/uuid.dart';
 
 class TodosDaoRepository {
-  Future<void> saveTask(String name, String image) async {}
+  Future<void> saveTask(String name, String image) async {
+    var db = await DatabaseHelper.databaseHelper();
+    await db.insert('toDos', {'id': Uuid().v4(), 'name': name, 'image': image});
+  }
 
   Future<void> updateTask(String id, String name) async {
-    print("updateTask: " + id + ' ' + name);
+    var db = await DatabaseHelper.databaseHelper();
+    await db.update('toDos', {'name': name}, where: 'id = ?', whereArgs: [id]);
   }
 
   Future<List<ToDos>> loadToDos() async {
@@ -40,6 +45,7 @@ class TodosDaoRepository {
   }
 
   Future<void> deleteTask(String id) async {
-    print("deleteTask: " + id);
+    var db = await DatabaseHelper.databaseHelper();
+    await db.delete('toDos', where: 'id = ?', whereArgs: [id]);
   }
 }
