@@ -35,7 +35,9 @@ class _UpdateScreenState extends State<UpdateScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset('images/$currentImage'),
+              Image.network(
+                'http://kasimadalan.pe.hu/toDos/images/${currentImage}',
+              ),
               const SizedBox(height: Sizes.sizedBox),
               Padding(
                 padding: const EdgeInsets.all(Sizes.padding),

@@ -99,7 +99,9 @@ class _MainScreenState extends State<MainScreen> {
                                 padding: const EdgeInsets.all(Sizes.padding),
                                 child: Row(
                                   children: [
-                                    Image.asset('images/${toDo.image}'),
+                                    Image.network(
+                                      'http://kasimadalan.pe.hu/toDos/images/${toDo.image}',
+                                    ),
                                     const SizedBox(width: Sizes.sizedBox),
                                     Expanded(child: Text(toDo.name ?? '')),
                                     IconButton(
@@ -122,7 +124,9 @@ class _MainScreenState extends State<MainScreen> {
                                               onPressed: () {
                                                 context
                                                     .read<MainCubit>()
-                                                    .deleteTask(toDo.id.toString());
+                                                    .deleteTask(
+                                                      toDo.id.toString(),
+                                                    );
                                               },
                                             ),
                                           ),
