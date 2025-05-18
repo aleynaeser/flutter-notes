@@ -6,9 +6,9 @@ import 'package:todo_app/common/constants/base_constants.dart';
 import 'package:todo_app/common/providers/theme_provider.dart';
 import 'package:todo_app/common/configs/theme_config.dart';
 
-import 'ui/cubits/main_cubit.dart';
-import 'ui/cubits/save_cubit.dart';
-import 'ui/cubits/update_cubit.dart';
+import 'core/cubits/main_cubit.dart';
+import 'core/cubits/save_cubit.dart';
+import 'core/cubits/update_cubit.dart';
 
 void main() {
   runApp(

@@ -4,7 +4,7 @@ import 'package:todo_app/core/data/entity/todos.dart';
 import 'package:todo_app/ui/components/app_bar.dart';
 import 'package:todo_app/common/constants/size_constants.dart';
 
-import '../cubits/update_cubit.dart';
+import '../../core/cubits/update_cubit.dart';
 
 class UpdateScreen extends StatefulWidget {
   final ToDos todos;

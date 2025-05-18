@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../core/data/repo/todos_dao_repository.dart';
+import '../data/repo/todos_dao_repository.dart';
 
 class UpdateCubit extends Cubit<void> { // no emit no sen data
   UpdateCubit() : super(0);
