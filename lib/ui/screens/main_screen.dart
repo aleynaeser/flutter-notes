@@ -1,14 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import '../../core/cubits/main_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo_app/core/data/entity/todos.dart';
-import 'package:todo_app/ui/components/app_bar.dart';
+import 'package:todo_app/ui/widgets/app_bar.dart';
+import 'package:todo_app/ui/widgets/todo_list.dart';
 import 'package:todo_app/ui/screens/save_screen.dart';
-import 'package:todo_app/ui/screens/update_screen.dart';
 import 'package:todo_app/common/models/theme_model.dart';
 import 'package:todo_app/common/constants/size_constants.dart';
-
-import '../../core/cubits/main_cubit.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -69,79 +67,7 @@ class _MainScreenState extends State<MainScreen> {
                   },
                 ),
               ),
-              BlocBuilder<MainCubit, List<ToDos>>(
-                builder: (context, toDosList) {
-                  if (toDosList.isNotEmpty) {
-                    return Expanded(
-                      child: ListView.builder(
-                        itemCount: toDosList.length,
-                        itemBuilder: (context, index) {
-                          var toDo = toDosList[index];
-
-                          return GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder:
-                                      (context) => UpdateScreen(todos: toDo),
-                                ),
-                              );
-                            },
-                            child: Card(
-                              elevation: 2,
-                              color: context.themeColors.themeColor2,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              margin: const EdgeInsets.only(bottom: 12),
-                              child: Padding(
-                                padding: const EdgeInsets.all(Sizes.padding),
-                                child: Row(
-                                  children: [
-                                    Image.asset('images/${toDo.image}'),
-                                    const SizedBox(width: Sizes.sizedBox),
-                                    Expanded(child: Text(toDo.name ?? '')),
-                                    IconButton(
-                                      icon: const Icon(Icons.close),
-                                      onPressed: () {
-                                        ScaffoldMessenger.of(
-                                          context,
-                                        ).showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              '${toDo.name} silindi',
-                                            ),
-                                            duration: const Duration(
-                                              seconds: 4,
-                                            ),
-                                            backgroundColor:
-                                                context.themeColors.themeColor4,
-                                            action: SnackBarAction(
-                                              label: 'Yes',
-                                              onPressed: () {
-                                                context
-                                                    .read<MainCubit>()
-                                                    .deleteTask(toDo.id.toString());
-                                              },
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    );
-                  } else {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-                },
-              ),
+              ToDoList(),
             ],
           ),
         ),

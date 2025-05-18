@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/core/data/entity/todos.dart';
-import 'package:todo_app/ui/components/app_bar.dart';
-import 'package:todo_app/common/constants/size_constants.dart';
-
 import '../../core/cubits/update_cubit.dart';
+import 'package:todo_app/ui/widgets/app_bar.dart';
+import 'package:todo_app/core/data/entity/todos.dart';
+import 'package:todo_app/core/cubits/main_cubit.dart';
+import 'package:todo_app/common/constants/size_constants.dart';
 
 class UpdateScreen extends StatefulWidget {
   final ToDos todos;
@@ -54,9 +54,12 @@ class _UpdateScreenState extends State<UpdateScreen> {
                 child: ElevatedButton(
                   onPressed: () {
                     context.read<UpdateCubit>().updateTask(
-                      widget.todos.id.toString(),
-                      widget.todos.name,
+                      widget.todos.id,
+                      textController.text,
+                      context.read<MainCubit>(),
                     );
+
+                    Navigator.pop(context);
                   },
                   child: Text('Update'),
                 ),

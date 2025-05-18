@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/common/constants/index.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:todo_app/common/constants/index.dart';
 import 'package:todo_app/common/models/theme_model.dart';
 
 class ThemeConfig {

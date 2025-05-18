@@ -1,14 +1,15 @@
-import '../database/database_helper.dart';
+import 'dart:math';
 import '../entity/todos.dart';
-import 'package:uuid/uuid.dart';
+import '../database/database_helper.dart';
 
 class TodosDaoRepository {
   Future<void> saveTask(String name, String image) async {
     var db = await DatabaseHelper.databaseHelper();
-    await db.insert('toDos', {'id': Uuid().v4(), 'name': name, 'image': image});
+    final id = Random().nextInt(10000);
+    await db.insert('toDos', {'id': id, 'name': name, 'image': image});
   }
 
-  Future<void> updateTask(String id, String name) async {
+  Future<void> updateTask(int id, String name) async {
     var db = await DatabaseHelper.databaseHelper();
     await db.update('toDos', {'name': name}, where: 'id = ?', whereArgs: [id]);
   }
@@ -19,7 +20,7 @@ class TodosDaoRepository {
 
     return List.generate(list.length, (index) {
       var row = list[index];
-      var id = row['id'];
+      var id = int.parse(row['id'].toString());
       var name = row['name'];
       var image = row['image'];
 
@@ -29,6 +30,7 @@ class TodosDaoRepository {
 
   Future<List<ToDos>> searchToDos(String searchText) async {
     var db = await DatabaseHelper.databaseHelper();
+
     List<Map<String, dynamic>> list = await db.rawQuery(
       'SELECT * FROM toDos WHERE name LIKE ?',
       ['%$searchText%'],
@@ -36,7 +38,7 @@ class TodosDaoRepository {
 
     return List.generate(list.length, (index) {
       var row = list[index];
-      var id = row['id'];
+      var id = int.parse(row['id'].toString());
       var name = row['name'];
       var image = row['image'];
 
@@ -44,7 +46,7 @@ class TodosDaoRepository {
     });
   }
 
-  Future<void> deleteTask(String id) async {
+  Future<void> deleteTask(int id) async {
     var db = await DatabaseHelper.databaseHelper();
     await db.delete('toDos', where: 'id = ?', whereArgs: [id]);
   }

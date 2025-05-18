@@ -1,6 +1,5 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../data/entity/todos.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../data/repo/todos_dao_repository.dart';
 
 class MainCubit extends Cubit<List<ToDos>> {
@@ -17,8 +16,8 @@ class MainCubit extends Cubit<List<ToDos>> {
     emit(toDosList);
   }
 
-  Future<void> deleteTask(String id) async {
+  Future<void> deleteTask(int id) async {
     await toDosDoaRepository.deleteTask(id);
-    emit(state.where((toDo) => toDo.id != id).toList());
+    await loadToDos();
   }
 }
