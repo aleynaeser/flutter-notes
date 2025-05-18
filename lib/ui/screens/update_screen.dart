@@ -54,7 +54,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                 child: ElevatedButton(
                   onPressed: () {
                     context.read<UpdateCubit>().updateTask(
-                      widget.todos.id,
+                      widget.todos.id.toString(),
                       widget.todos.name,
                     );
                   },

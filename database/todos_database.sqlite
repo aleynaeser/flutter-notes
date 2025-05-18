@@ -1,0 +1,10 @@
+BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS "toDos" (
+	"id"	INTEGER,
+	"name"	TEXT,
+	"image"	TEXT,
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
+INSERT INTO "toDos" VALUES (1,'Sport','araba.png');
+INSERT INTO "toDos" VALUES (2,'Travel','agac.png');
+COMMIT;

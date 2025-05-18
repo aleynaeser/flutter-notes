@@ -122,7 +122,7 @@ class _MainScreenState extends State<MainScreen> {
                                               onPressed: () {
                                                 context
                                                     .read<MainCubit>()
-                                                    .deleteTask(toDo.id);
+                                                    .deleteTask(toDo.id.toString());
                                               },
                                             ),
                                           ),
