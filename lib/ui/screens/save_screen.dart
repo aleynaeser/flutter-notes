@@ -4,8 +4,8 @@ import 'package:todo_app/ui/components/app_bar.dart';
 import 'package:todo_app/common/constants/size_constants.dart';
 import 'dart:math';
 
-import '../cubits/main_cubit.dart';
-import '../cubits/save_cubit.dart';
+import '../../core/cubits/main_cubit.dart';
+import '../../core/cubits/save_cubit.dart';
 
 class SaveScreen extends StatefulWidget {
   const SaveScreen({super.key});

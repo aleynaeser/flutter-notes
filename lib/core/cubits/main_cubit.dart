@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../core/data/entity/todos.dart';
-import '../../core/data/repo/todos_dao_repository.dart';
+import '../data/entity/todos.dart';
+import '../data/repo/todos_dao_repository.dart';
 
 class MainCubit extends Cubit<List<ToDos>> {
   MainCubit() : super(<ToDos>[]);

@@ -8,7 +8,7 @@ import 'package:todo_app/ui/screens/update_screen.dart';
 import 'package:todo_app/common/models/theme_model.dart';
 import 'package:todo_app/common/constants/size_constants.dart';
 
-import '../cubits/main_cubit.dart';
+import '../../core/cubits/main_cubit.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
