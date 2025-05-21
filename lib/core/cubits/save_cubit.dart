@@ -9,8 +9,6 @@ class SaveCubit extends Cubit<void> {
   // Task kaydetme ve ana sayfaya dönüş için
   Future<void> saveTask(String name, String image, MainCubit mainCubit) async {
     await toDosDoaRepository.saveTask(name, image);
-
-    // MainCubit'i güncelleyerek listenin yenilenmesini sağla
     await mainCubit.loadToDos();
   }
 }

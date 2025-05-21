@@ -125,7 +125,8 @@ class _MainScreenState extends State<MainScreen> {
                                                 context
                                                     .read<MainCubit>()
                                                     .deleteTask(
-                                                      toDo.id.toString(),
+                                                      toDo.id,
+                                                      context.read<MainCubit>(),
                                                     );
                                               },
                                             ),

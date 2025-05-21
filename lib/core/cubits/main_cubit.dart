@@ -17,8 +17,9 @@ class MainCubit extends Cubit<List<ToDos>> {
     emit(toDosList);
   }
 
-  Future<void> deleteTask(String id) async {
+  Future<void> deleteTask(int id, MainCubit mainCubit) async {
     await toDosDoaRepository.deleteTask(id);
+    await mainCubit.loadToDos();
     emit(state.where((toDo) => toDo.id != id).toList());
   }
 }

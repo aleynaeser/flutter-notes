@@ -10,10 +10,18 @@ class TodosDaoRepository {
     return TodosResponse.fromJson(json.decode(todos)).todos;
   }
 
-  Future<void> saveTask(String name, String image) async {}
+  Future<void> saveTask(String name, String image) async {
+    var url = "http://kasimadalan.pe.hu/toDos/insert.php";
+    var data = {"name": name, "image": image};
+    var response = await Dio().post(url, data: FormData.fromMap(data));
+    print(response.data.toString());
+  }
 
-  Future<void> updateTask(String id, String name) async {
-    print("updateTask: " + id + ' ' + name);
+  Future<void> updateTask(int id, String name) async {
+    var url = "http://kasimadalan.pe.hu/toDos/update.php";
+    var data = {"id": id, "name": name};
+    var response = await Dio().post(url, data: FormData.fromMap(data));
+    print(response.data.toString());
   }
 
   Future<List<ToDos>> loadToDos() async {
@@ -26,14 +34,19 @@ class TodosDaoRepository {
   }
 
   Future<List<ToDos>> searchToDos(String searchText) async {
-    return [
-      ToDos(id: 1, name: 'ToDo 1', image: 'simsek.png'),
-      ToDos(id: 2, name: 'ToDo 2', image: 'agac.png'),
-      ToDos(id: 3, name: 'ToDo 3', image: 'araba.png'),
-    ];
+    var url = "http://kasimadalan.pe.hu/toDos/search.php";
+    var data = {"name": searchText};
+    var response = await Dio().post(url, data: FormData.fromMap(data));
+
+    print(response.data.toString());
+    var todos = parseToDos(response.data.toString());
+    return todos;
   }
 
-  Future<void> deleteTask(String id) async {
-    print("deleteTask: " + id);
+  Future<void> deleteTask(int id) async {
+    var url = "http://kasimadalan.pe.hu/toDos/delete.php";
+    var data = {"id": id};
+    var response = await Dio().post(url, data: FormData.fromMap(data));
+    print(response.data.toString());
   }
 }
